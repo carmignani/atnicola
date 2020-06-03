@@ -1,12 +1,12 @@
 function [rcor] = OrbCorr_st(r,plane,frac_eig,useDQ,maskbpm)
 %ORBCORR_ST corrects orbit with steerer in ebs lattice 
 %   
-%   [rcor] = OrbCorr_st(r,plane,frac_eig)
+%   [rcor] = OrbCorr_st(r,plane,frac_eig,useDQ,maskbpm))
 %   r is the ring with big orbit 
 %   plane is 'h' or 'v'
 %   frac_eig is the fraction of eigenvalues used for the SVD
 %   useDQ is 0 if no DQ, 1 if only DQ1, 2 if only DQ2, 3 if all DQ are used
-%   as orbit correctors
+%   as orbit correctors. Default 0, no DQ used.
 %   rcor is the at lattice after corrections
 %
 %   matrices are stored in:
@@ -30,7 +30,7 @@ DQmask(DQ)=true;
 DQ1mask(DQ1)=true;
 DQ2mask(DQ2)=true;
 
-load('/machfs/carmigna/Repositories/atnicola/RMs.mat');
+load('RMs.mat');
 indbpm=indbpm(maskbpm);
 orberrall=findorbit4Err(r,0,indbpm);
 if strcmp(plane,'h') 
