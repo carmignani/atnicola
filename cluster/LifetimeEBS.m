@@ -20,18 +20,26 @@ indID=findcells(ring,'FamName','ID\w*');%Marker');
 % To=805;     %indID(6);              %5 
 % From=indID(4);
 % To=indID(5);
-From=indID(FromID);
-To=indID(ToID);
+if FromID==0
+    From=1;
+else
+    From=indID(FromID);
+end
+if ToID==32
+    To=length(ring);
+else
+    To=indID(ToID);
+end
 % From=1;
 % To=length(ring);
 % To=indID(3);
-RFVolt_MV=6.5;       %6
+RFVolt_MV=6.0;       %6
 harm_num=992;        %7
 rp=ringpara(ring);
 emitx=rp.emittx;
 emity=10e-12;            %9
 Ib=0.2/868;             %11
-Zn = 0.67;
+Zn = 0.30;
 BL=atBunchLength(ring,Ib,Zn); %10
 
 addlabel='';
